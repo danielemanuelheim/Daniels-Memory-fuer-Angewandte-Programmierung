@@ -20,6 +20,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    margin-left: 15%;
 }
 
 .karte {
@@ -68,3 +69,56 @@ body {
 .karte.gewendet {
     transform: rotateY(180deg);
 }
+
+.nebenfeld {
+    margin-left: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .highscore-box {
+    width: 25rem;
+    background-color: rgba(255, 255, 255, 0.242);
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .schrift {
+    font-family: "Orbitron", sans-serif;
+    font-size: x-large;
+    color: #fff;
+    text-shadow: 1px 1px 2px black;
+  }
+  
+  .highscore {
+    float: right;
+    position: relative;
+    font-family: "Orbitron", sans-serif;
+    font-size: x-large;
+    color: yellow;
+    text-shadow: 1px 1px 2px black;
+  }
+  
+  .neustart {
+    width: 8rem;
+    font-family: "Orbitron", sans-serif;
+    font-size: x-large;
+    background-color: #2144f3;
+    border: 1px solid #065290;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    text-shadow: 1px 1px 2px black;
+    transition: all 0.2s;
+  }
+  
+  .neustart:hover {
+    background-color: #07307c;
+    border-color: #6607c6;
+    cursor: pointer;
+  }

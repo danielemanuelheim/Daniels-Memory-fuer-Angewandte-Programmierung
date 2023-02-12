@@ -47,10 +47,12 @@ function kartenFixieren() {
   ersteKarte.removeEventListener("click", karteWenden);
   zweiteKarte.removeEventListener("click", karteWenden);
   zuruecksetzen();
+  highscoreHoch();
 }
 
 function umdrehen() {
   gerateneKarte = true;
+  highscoreRunter();
 
   setTimeout(() => {
     ersteKarte.classList.remove("gewendet");
@@ -66,9 +68,25 @@ function zuruecksetzen() {
   zweiteKarte = null;
 }
 
+highscore = 0;
+highscoreFeld = document.getElementById("highscore");
+
+function highscoreHoch() {
+  highscore += 1000;
+  highscoreFeld.innerHTML = highscore;
+}
+
+function highscoreRunter() {
+  if (highscore >= 500) {
+    highscore = highscore - 500;
+    highscoreFeld.innerHTML = highscore;
+  }
+}
+
 function starten() {
     kartenMischen();
     karten.forEach((karte) => karte.addEventListener("click", karteWenden));
+    highscoreFeld.innerHTML = 0;
 }
 
 starten();

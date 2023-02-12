@@ -92,6 +92,8 @@ function highscoreRunter() {
 function neustarten() {
     highscoreFeld.innerHTML = 0;
     highscore = 0;
+    endNachricht.style.display = "none";
+    gefundeneKartenArray = [];
     zuruecksetzen();
     kartenArray.forEach((karte) => {
       karte.classList.remove("gewendet");

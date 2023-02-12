@@ -17,6 +17,8 @@ let gerateneKarte = false;
 let ersteKarte;
 let zweiteKarte;
 
+gefundeneKartenArray = [];
+
 function karteWenden() {
   this.classList.add("gewendet");
   if (gerateneKarte) return;
@@ -34,6 +36,10 @@ function paarChecken() {
   let uebereinstimmung = ersteKarte.dataset.bild === zweiteKarte.dataset.bild;
   if (uebereinstimmung) {
     kartenFixieren();
+    gefundeneKartenArray.push(ersteKarte, zweiteKarte);
+    if (gefundeneKartenArray.length == 16) {
+    endBenachrichtigung()
+    }
   } else {
     umdrehen();
     karten.forEach((karte) => karte.removeEventListener("click", karteWenden));
@@ -93,6 +99,14 @@ function neustarten() {
     });
     setTimeout(() => { starten() }, 1000);
   }  
+
+let endNachricht = document.getElementById("ende");
+let endhighscore = document.getElementById("endhighscore");
+
+function endBenachrichtigung() {
+  endhighscore.innerHTML = highscore;
+  endNachricht.style.display = "block";
+}
 
 function starten() {
     kartenMischen();

@@ -133,6 +133,7 @@ body {
     border-radius: 10px;
     padding: 20px;
     justify-content: space-between;
+    display: none;
   }
   
   .endtext {

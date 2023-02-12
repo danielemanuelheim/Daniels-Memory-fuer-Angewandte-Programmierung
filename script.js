@@ -3,13 +3,13 @@ let karten = document.querySelectorAll(".karte");
 let kartenArray = [...karten];
 
 function kartenMischen() {
-  kartenArray.forEach((karte) => {
-    let randomIndex = Math.floor(Math.random() * kartenArray.length);
-    karte.style.order = randomIndex;
-    karte.children[1].style.backgroundImage = `url(${karte.getAttribute(
-      "data-bild"
-    )})`;
-  });
+    kartenArray.forEach((karte) => {
+        let randomIndex = Math.floor(Math.random() * kartenArray.length);
+        karte.style.order = randomIndex;
+        karte.children[1].style.backgroundImage = `url(${karte.getAttribute(
+            "data-bild"
+        )})`;
+    });
 }
 
 let gewendeteKarte = false;
@@ -20,73 +20,73 @@ let zweiteKarte;
 gefundeneKartenArray = [];
 
 function karteWenden() {
-  this.classList.add("gewendet");
-  if (gerateneKarte) return;
-  if (this === ersteKarte) return;
-  if (!gewendeteKarte) {
-    gewendeteKarte = true;
-    ersteKarte = this;
-    return;
-  }
-  zweiteKarte = this;
-  paarChecken();
+    this.classList.add("gewendet");
+    if (gerateneKarte) return;
+    if (this === ersteKarte) return;
+    if (!gewendeteKarte) {
+        gewendeteKarte = true;
+        ersteKarte = this;
+        return;
+    }
+    zweiteKarte = this;
+    paarChecken();
 }
 
 function paarChecken() {
-  let uebereinstimmung = ersteKarte.dataset.bild === zweiteKarte.dataset.bild;
-  if (uebereinstimmung) {
-    kartenFixieren();
-    gefundeneKartenArray.push(ersteKarte, zweiteKarte);
-    if (gefundeneKartenArray.length == 16) {
-    endBenachrichtigung()
+    let uebereinstimmung = ersteKarte.dataset.bild === zweiteKarte.dataset.bild;
+    if (uebereinstimmung) {
+        kartenFixieren();
+        gefundeneKartenArray.push(ersteKarte, zweiteKarte);
+        if (gefundeneKartenArray.length == 16) {
+            endBenachrichtigung()
+        }
+    } else {
+        umdrehen();
+        karten.forEach((karte) => karte.removeEventListener("click", karteWenden));
+        setTimeout(() => {
+            karten.forEach((karte) => karte.addEventListener("click", karteWenden))
+        }, 3000);
     }
-  } else {
-    umdrehen();
-    karten.forEach((karte) => karte.removeEventListener("click", karteWenden));
-    setTimeout(() => {
-      karten.forEach((karte) => karte.addEventListener("click", karteWenden))
-    }, 3000);
-  }
 }
 
 function kartenFixieren() {
-  ersteKarte.removeEventListener("click", karteWenden);
-  zweiteKarte.removeEventListener("click", karteWenden);
-  zuruecksetzen();
-  highscoreHoch();
+    ersteKarte.removeEventListener("click", karteWenden);
+    zweiteKarte.removeEventListener("click", karteWenden);
+    zuruecksetzen();
+    highscoreHoch();
 }
 
 function umdrehen() {
-  gerateneKarte = true;
-  highscoreRunter();
+    gerateneKarte = true;
+    highscoreRunter();
 
-  setTimeout(() => {
-    ersteKarte.classList.remove("gewendet");
-    zweiteKarte.classList.remove("gewendet");
-    zuruecksetzen();
-  }, 3000);
+    setTimeout(() => {
+        ersteKarte.classList.remove("gewendet");
+        zweiteKarte.classList.remove("gewendet");
+        zuruecksetzen();
+    }, 3000);
 }
 
 function zuruecksetzen() {
-  gewendeteKarte = false;
-  gerateneKarte = false;
-  ersteKarte = null;
-  zweiteKarte = null;
+    gewendeteKarte = false;
+    gerateneKarte = false;
+    ersteKarte = null;
+    zweiteKarte = null;
 }
 
 highscore = 0;
 highscoreFeld = document.getElementById("highscore");
 
 function highscoreHoch() {
-  highscore += 1000;
-  highscoreFeld.innerHTML = highscore;
+    highscore += 1000;
+    highscoreFeld.innerHTML = highscore;
 }
 
 function highscoreRunter() {
-  if (highscore >= 500) {
-    highscore = highscore - 500;
-    highscoreFeld.innerHTML = highscore;
-  }
+    if (highscore >= 500) {
+        highscore = highscore - 500;
+        highscoreFeld.innerHTML = highscore;
+    }
 }
 
 function neustarten() {
@@ -96,18 +96,18 @@ function neustarten() {
     gefundeneKartenArray = [];
     zuruecksetzen();
     kartenArray.forEach((karte) => {
-      karte.classList.remove("gewendet");
-      karte.removeEventListener("click", karteWenden);
+        karte.classList.remove("gewendet");
+        karte.removeEventListener("click", karteWenden);
     });
     setTimeout(() => { starten() }, 1000);
-  }  
+}
 
 let endNachricht = document.getElementById("ende");
 let endhighscore = document.getElementById("endhighscore");
 
 function endBenachrichtigung() {
-  endhighscore.innerHTML = highscore;
-  endNachricht.style.display = "block";
+    endhighscore.innerHTML = highscore;
+    endNachricht.style.display = "block";
 }
 
 function starten() {

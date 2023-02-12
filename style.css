@@ -76,9 +76,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
-  .highscore-box {
+}
+
+.highscore-box {
     width: 25rem;
     background-color: rgba(255, 255, 255, 0.242);
     border: 3px solid white;
@@ -86,25 +86,25 @@ body {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-  }
-  
-  .schrift {
+}
+
+.schrift {
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
     color: #fff;
     text-shadow: 1px 1px 2px black;
-  }
-  
-  .highscore {
+}
+
+.highscore {
     float: right;
     position: relative;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
     color: yellow;
     text-shadow: 1px 1px 2px black;
-  }
-  
-  .neustart {
+}
+
+.neustart {
     width: 8rem;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
@@ -115,15 +115,15 @@ body {
     padding: 10px 20px;
     text-shadow: 1px 1px 2px black;
     transition: all 0.2s;
-  }
-  
-  .neustart:hover {
+}
+
+.neustart:hover {
     background-color: #07307c;
     border-color: #6607c6;
     cursor: pointer;
-  }
+}
 
-  .ende {
+.ende {
     position: fixed;
     top: 0.5rem;
     margin-left: 2rem;
@@ -134,20 +134,20 @@ body {
     padding: 20px;
     justify-content: space-between;
     display: none;
-  }
-  
-  .endtext {
+}
+
+.endtext {
     float: left;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
     color: whitesmoke;
     text-shadow: 1px 1px 2px darkblue;
-  }
-  
-  .endhighscore {
+}
+
+.endhighscore {
     float: right;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
     color: yellow;
     text-shadow: 1px 1px 2px darkblue;
-  }
+}

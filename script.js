@@ -12,8 +12,54 @@ function kartenMischen() {
   });
 }
 
+let gewendeteKarte = false;
+let gerateneKarte = false;
+let ersteKarte;
+let zweiteKarte;
+
 function karteWenden() {
-    this.classList.add("gewendet")
+  this.classList.add("gewendet");
+  if (gerateneKarte) return;
+  if (this === ersteKarte) return;
+  if (!gewendeteKarte) {
+    gewendeteKarte = true;
+    ersteKarte = this;
+    return;
+  }
+  zweiteKarte = this;
+  paarChecken();
+}
+
+function paarChecken() {
+  let uebereinstimmung = ersteKarte.dataset.bild === zweiteKarte.dataset.bild;
+  if (uebereinstimmung) {
+    kartenFixieren();
+  } else {
+    umdrehen();
+  }
+}
+
+function kartenFixieren() {
+  ersteKarte.removeEventListener("click", karteWenden);
+  zweiteKarte.removeEventListener("click", karteWenden);
+  zuruecksetzen();
+}
+
+function umdrehen() {
+  gerateneKarte = true;
+
+  setTimeout(() => {
+    ersteKarte.classList.remove("gewendet");
+    zweiteKarte.classList.remove("gewendet");
+    zuruecksetzen();
+  }, 3000);
+}
+
+function zuruecksetzen() {
+  gewendeteKarte = false;
+  gerateneKarte = false;
+  ersteKarte = null;
+  zweiteKarte = null;
 }
 
 function starten() {

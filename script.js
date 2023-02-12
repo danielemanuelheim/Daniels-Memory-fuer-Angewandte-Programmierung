@@ -83,6 +83,17 @@ function highscoreRunter() {
   }
 }
 
+function neustarten() {
+    highscoreFeld.innerHTML = 0;
+    highscore = 0;
+    zuruecksetzen();
+    kartenArray.forEach((karte) => {
+      karte.classList.remove("gewendet");
+      karte.removeEventListener("click", karteWenden);
+    });
+    setTimeout(() => { starten() }, 1000);
+  }  
+
 function starten() {
     kartenMischen();
     karten.forEach((karte) => karte.addEventListener("click", karteWenden));

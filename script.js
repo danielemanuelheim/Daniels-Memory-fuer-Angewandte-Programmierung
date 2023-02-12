@@ -36,6 +36,10 @@ function paarChecken() {
     kartenFixieren();
   } else {
     umdrehen();
+    karten.forEach((karte) => karte.removeEventListener("click", karteWenden));
+    setTimeout(() => {
+      karten.forEach((karte) => karte.addEventListener("click", karteWenden))
+    }, 3000);
   }
 }
 

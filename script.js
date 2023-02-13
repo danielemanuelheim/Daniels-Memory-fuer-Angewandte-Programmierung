@@ -20,8 +20,8 @@ let zweiteKarte;
 gefundeneKartenArray = [];
 
 function karteWenden() {
-    this.classList.add("gewendet");
     if (gerateneKarte) return;
+    this.classList.add("gewendet");
     if (this === ersteKarte) return;
     if (!gewendeteKarte) {
         gewendeteKarte = true;
@@ -42,19 +42,12 @@ function paarChecken() {
         }
     } else {
         umdrehen();
-        karten.forEach((karte) => karte.removeEventListener("click", karteWenden));
-        setTimeout(() => {
-            uebrigeKarten = document.querySelectorAll('div[data-status="ungefunden"]');
-            uebrigeKarten.forEach((karte) => karte.addEventListener("click", karteWenden));
-        }, 3000);
     }
 }
 
 function kartenFixieren() {
     ersteKarte.removeEventListener("click", karteWenden);
     zweiteKarte.removeEventListener("click", karteWenden);
-    ersteKarte.setAttribute('data-status', "gefunden");
-    zweiteKarte.setAttribute('data-status', "gefunden");
     zuruecksetzen();
     highscoreHoch();
 }
@@ -101,7 +94,6 @@ function neustarten() {
     kartenArray.forEach((karte) => {
         karte.classList.remove("gewendet");
         karte.removeEventListener("click", karteWenden);
-        karte.setAttribute('data-status', "ungefunden");
     });
     setTimeout(() => { starten() }, 1000);
 }

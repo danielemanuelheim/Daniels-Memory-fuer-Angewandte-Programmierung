@@ -1,123 +1,123 @@
 
-let karten = document.querySelectorAll(".karte");
-let kartenArray = [...karten];
+let cards = document.querySelectorAll(".card");
+let cardsArray = [...cards];
 
-function kartenMischen() {
-    kartenArray.forEach((karte) => {
-        let randomIndex = Math.floor(Math.random() * kartenArray.length);
-        karte.style.order = randomIndex;
-        karte.children[1].style.backgroundImage = `url(${karte.getAttribute(
-            "data-bild"
+function shuffleCards() {
+    cardsArray.forEach((card) => {
+        let randomIndex = Math.floor(Math.random() * cardsArray.length);
+        card.style.order = randomIndex;
+        card.children[1].style.backgroundImage = `url(${card.getAttribute(
+            "data-image"
         )})`;
     });
 }
 
-let gewendeteKarte = false;
-let gerateneKarte = false;
-let ersteKarte;
-let zweiteKarte;
+let flippedCard = false;
+let guessedCard = false;
+let firstCard;
+let secondCard;
 
-gefundeneKartenArray = [];
+foundCardsArray = [];
 
-function karteWenden() {
-    this.classList.add("gewendet");
-    if (gerateneKarte) return;
-    if (this === ersteKarte) return;
-    if (!gewendeteKarte) {
-        gewendeteKarte = true;
-        ersteKarte = this;
+function flipCard() {
+    this.classList.add("flipped");
+    if (guessedCard) return;
+    if (this === firstCard) return;
+    if (!flippedCard) {
+        flippedCard = true;
+        firstCard = this;
         return;
     }
-    zweiteKarte = this;
-    paarChecken();
+    secondCard = this;
+    checkPair();
 }
 
-function paarChecken() {
-    let uebereinstimmung = ersteKarte.dataset.bild === zweiteKarte.dataset.bild;
-    if (uebereinstimmung) {
-        kartenFixieren();
-        gefundeneKartenArray.push(ersteKarte, zweiteKarte);
-        if (gefundeneKartenArray.length == 16) {
-            endBenachrichtigung()
+function checkPair() {
+    let match = firstCard.dataset.image === secondCard.dataset.image;
+    if (match) {
+        fixCards();
+        foundCardsArray.push(firstCard, secondCard);
+        if (foundCardsArray.length == 16) {
+            endingMessage()
         }
     } else {
-        umdrehen();
-        karten.forEach((karte) => karte.removeEventListener("click", karteWenden));
+        flipBack();
+        cards.forEach((card) => card.removeEventListener("click", flipCard));
         setTimeout(() => {
-            uebrigeKarten = document.querySelectorAll('div[data-status="ungefunden"]');
-            uebrigeKarten.forEach((karte) => karte.addEventListener("click", karteWenden));
+            remainingCards = document.querySelectorAll('div[data-state="unfound"]');
+            remainingCards.forEach((card) => card.addEventListener("click", flipCard));
         }, 3000);
     }
 }
 
-function kartenFixieren() {
-    ersteKarte.removeEventListener("click", karteWenden);
-    zweiteKarte.removeEventListener("click", karteWenden);
-    ersteKarte.setAttribute('data-status', "gefunden");
-    zweiteKarte.setAttribute('data-status', "gefunden");
-    zuruecksetzen();
-    highscoreHoch();
+function fixCards() {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    firstCard.setAttribute('data-state', "found");
+    secondCard.setAttribute('data-state', "found");
+    reset();
+    highscoreUp();
 }
 
-function umdrehen() {
-    gerateneKarte = true;
-    highscoreRunter();
+function flipBack() {
+    guessedCard = true;
+    highscoreDown();
 
     setTimeout(() => {
-        ersteKarte.classList.remove("gewendet");
-        zweiteKarte.classList.remove("gewendet");
-        zuruecksetzen();
+        firstCard.classList.remove("flipped");
+        secondCard.classList.remove("flipped");
+        reset();
     }, 3000);
 }
 
-function zuruecksetzen() {
-    gewendeteKarte = false;
-    gerateneKarte = false;
-    ersteKarte = null;
-    zweiteKarte = null;
+function reset() {
+    flippedCard = false;
+    guessedCard = false;
+    firstCard = null;
+    secondCard = null;
 }
 
 highscore = 0;
-highscoreFeld = document.getElementById("highscore");
+highscoreContainer = document.getElementById("highscore");
 
-function highscoreHoch() {
+function highscoreUp() {
     highscore += 1000;
-    highscoreFeld.innerHTML = highscore;
+    highscoreContainer.innerHTML = highscore;
 }
 
-function highscoreRunter() {
+function highscoreDown() {
     if (highscore >= 500) {
         highscore = highscore - 500;
-        highscoreFeld.innerHTML = highscore;
+        highscoreContainer.innerHTML = highscore;
     }
 }
 
-function neustarten() {
-    highscoreFeld.innerHTML = 0;
+function restart() {
+    highscoreContainer.innerHTML = 0;
     highscore = 0;
-    endNachricht.style.display = "none";
-    gefundeneKartenArray = [];
-    zuruecksetzen();
-    kartenArray.forEach((karte) => {
-        karte.classList.remove("gewendet");
-        karte.removeEventListener("click", karteWenden);
-        karte.setAttribute('data-status', "ungefunden");
+    message.style.display = "none";
+    foundCardsArray = [];
+    reset();
+    cardsArray.forEach((card) => {
+        card.classList.remove("flipped");
+        card.removeEventListener("click", flipCard);
+        card.setAttribute('data-state', "unfound");
     });
-    setTimeout(() => { starten() }, 1000);
+    setTimeout(() => { start() }, 1000);
 }
 
-let endNachricht = document.getElementById("ende");
-let endhighscore = document.getElementById("endhighscore");
+let message = document.getElementById("end");
+let endingHighscore = document.getElementById("endinghighscore");
 
-function endBenachrichtigung() {
-    endhighscore.innerHTML = highscore;
-    endNachricht.style.display = "block";
+function endingMessage() {
+    endingHighscore.innerHTML = highscore;
+    message.style.display = "block";
 }
 
-function starten() {
-    kartenMischen();
-    karten.forEach((karte) => karte.addEventListener("click", karteWenden));
-    highscoreFeld.innerHTML = 0;
+function start() {
+    shuffleCards();
+    cards.forEach((card) => card.addEventListener("click", flipCard));
+    highscoreContainer.innerHTML = 0;
 }
 
-starten();
+start();

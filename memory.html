@@ -11,94 +11,94 @@
 
 <body>
 
-    <div class="spielbrett">
+    <div class="gameboard">
 
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-1.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-1.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-1.png">
-            <div class="oberseite"></div>
-            <div class="symbol"></div>
-        </div>
-
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-2.png">
-            <div class="oberseite"></div>
-            <div class="symbol"></div>
-        </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-2.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-1.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
 
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-3.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-2.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-3.png">
-            <div class="oberseite"></div>
-            <div class="symbol"></div>
-        </div>
-
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-4.png">
-            <div class="oberseite"></div>
-            <div class="symbol"></div>
-        </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-4.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-2.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
 
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-5.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-3.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-5.png">
-            <div class="oberseite"></div>
-            <div class="symbol"></div>
-        </div>
-
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-6.png">
-            <div class="oberseite"></div>
-            <div class="symbol"></div>
-        </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-6.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-3.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
 
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-7.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-4.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-7.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-4.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
 
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-8.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-5.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
-        <div class="karte" data-status="ungefunden" data-bild="./imgs/img-8.png">
-            <div class="oberseite"></div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-5.png">
+            <div class="top"></div>
+            <div class="symbol"></div>
+        </div>
+
+        <div class="card" data-state="unfound" data-image="./imgs/img-6.png">
+            <div class="top"></div>
+            <div class="symbol"></div>
+        </div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-6.png">
+            <div class="top"></div>
+            <div class="symbol"></div>
+        </div>
+
+        <div class="card" data-state="unfound" data-image="./imgs/img-7.png">
+            <div class="top"></div>
+            <div class="symbol"></div>
+        </div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-7.png">
+            <div class="top"></div>
+            <div class="symbol"></div>
+        </div>
+
+        <div class="card" data-state="unfound" data-image="./imgs/img-8.png">
+            <div class="top"></div>
+            <div class="symbol"></div>
+        </div>
+        <div class="card" data-state="unfound" data-image="./imgs/img-8.png">
+            <div class="top"></div>
             <div class="symbol"></div>
         </div>
 
     </div>
 
-    <div class="nebenfeld">
+    <div class="sidefield">
         <div class="highscore-box">
-            <p class="schrift">Dein Highscore: </p>
+            <p class="text">Dein Highscore: </p>
             <div id="highscore" class="highscore"></div>
         </div>
-        <button class="neustart" onclick="neustarten()">Neustart</button>
+        <button class="restart" onclick="restart()">Neustart</button>
     </div>
 
-    <div id="ende" class="ende">
-        <div class="endtext">Herzlichen Glückwunsch, du hast das
+    <div id="end" class="end">
+        <div class="endingtext">Herzlichen Glückwunsch, du hast das
             Spiel erfolgreich beendet. Dein Highscore ist: </div>
-        <div id="endhighscore" class="endhighscore">XXXX</div>
+        <div id="endinghighscore" class="endinghighscore">XXXX</div>
     </div>
 
     <script src="./script.js"></script>

@@ -14,7 +14,7 @@ body {
     background-position: center;
 }
 
-.spielbrett {
+.gameboard {
     max-width: 700px;
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +23,7 @@ body {
     margin-left: 15%;
 }
 
-.karte {
+.card {
     width: 130px;
     height: 130px;
     background: #ffffff;
@@ -33,7 +33,7 @@ body {
     transform-style: preserve-3d;
 }
 
-.karte .oberseite {
+.card .top {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -46,7 +46,7 @@ body {
 }
 
 
-.karte .symbol {
+.card .symbol {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -58,19 +58,19 @@ body {
     background-color: #ffffff;
 }
 
-.karte .symbol {
+.card .symbol {
     transform: rotateY(180deg);
 }
 
-.karte .oberseite {
+.card .top {
     background-image: url("./imgs/top.png");
 }
 
-.karte.gewendet {
+.card.flipped {
     transform: rotateY(180deg);
 }
 
-.nebenfeld {
+.sidefield {
     margin-left: 7%;
     display: flex;
     flex-direction: column;
@@ -88,7 +88,7 @@ body {
     justify-content: space-between;
 }
 
-.schrift {
+.text {
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
     color: #fff;
@@ -104,7 +104,7 @@ body {
     text-shadow: 1px 1px 2px black;
 }
 
-.neustart {
+.restart {
     width: 8rem;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
@@ -117,13 +117,13 @@ body {
     transition: all 0.2s;
 }
 
-.neustart:hover {
+.restart:hover {
     background-color: #07307c;
     border-color: #6607c6;
     cursor: pointer;
 }
 
-.ende {
+.end {
     position: fixed;
     top: 0.5rem;
     margin-left: 2rem;
@@ -136,7 +136,7 @@ body {
     display: none;
 }
 
-.endtext {
+.endingtext {
     float: left;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;
@@ -144,7 +144,7 @@ body {
     text-shadow: 1px 1px 2px darkblue;
 }
 
-.endhighscore {
+.endinghighscore {
     float: right;
     font-family: "Orbitron", sans-serif;
     font-size: x-large;

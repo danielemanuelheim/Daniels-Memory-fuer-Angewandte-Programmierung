@@ -1,117 +1,118 @@
 
-let cards = document.querySelectorAll(".card");
-let cardsArray = [...cards];
+let karten = document.querySelectorAll(".karte");
+let kartenArray = [...karten];
 
-function shuffleCards() {
-    cardsArray.forEach((card) => {
-        let randomIndex = Math.floor(Math.random() * cardsArray.length);
-        card.style.order = randomIndex;
-        card.children[1].style.backgroundImage = `url(${card.getAttribute(
-            "data-image"
+function kartenMischen() {
+    kartenArray.forEach((karte) => {
+        let randomIndex = Math.floor(Math.random() * kartenArray.length);
+        karte.style.order = randomIndex;
+        karte.children[1].style.backgroundImage = `url(${karte.getAttribute(
+            "data-bild"
         )})`;
     });
 }
 
-let flippedCard = false;
-let guessedCard = false;
-let firstCard;
-let secondCard;
+let gewendeteKarte = false;
+let gerateneKarte = false;
+let ersteKarte;
+let zweiteKarte;
 
-foundCardsArray = [];
+gefundeneKartenArray = [];
 
-function flipCard() {
-    if (guessedCard) return;
-    this.classList.add("flipped");
-    if (this === firstCard) return;
-    if (!flippedCard) {
-        flippedCard = true;
-        firstCard = this;
+function karteWenden() {
+    if (gerateneKarte) return;
+    this.classList.add("gewendet");
+    if (this === ersteKarte) return;
+    if (!gewendeteKarte) {
+        gewendeteKarte = true;
+        ersteKarte = this;
         return;
     }
-    secondCard = this;
-    checkPair();
+    zweiteKarte = this;
+    paarChecken();
 }
 
-function checkPair() {
-    let match = firstCard.dataset.image === secondCard.dataset.image;
-    if (match) {
-        fixCards();
-        foundCardsArray.push(firstCard, secondCard);
-        if (foundCardsArray.length == 16) {
-            endingMessage()
+function paarChecken() {
+    let uebereinstimmung = ersteKarte.dataset.bild === zweiteKarte.dataset.bild;
+    if (uebereinstimmung) {
+        kartenFixieren();
+        gefundeneKartenArray.push(ersteKarte, zweiteKarte);
+        if (gefundeneKartenArray.length == 16) {
+            endBenachrichtigung()
         }
     } else {
-        flipBack();
+        umdrehen();
     }
 }
 
-function fixCards() {
-    firstCard.removeEventListener("click", flipCard);
-    secondCard.removeEventListener("click", flipCard);
-    reset();
-    highscoreUp();
+function kartenFixieren() {
+    ersteKarte.removeEventListener("click", karteWenden);
+    zweiteKarte.removeEventListener("click", karteWenden);
+    zuruecksetzen();
+    highscoreHoch();
 }
 
-function flipBack() {
-    guessedCard = true;
-    highscoreDown();
+function umdrehen() {
+    gerateneKarte = true;
+    highscoreRunter();
 
     setTimeout(() => {
-        firstCard.classList.remove("flipped");
-        secondCard.classList.remove("flipped");
-        reset();
+        ersteKarte.classList.remove("gewendet");
+        zweiteKarte.classList.remove("gewendet");
+        zuruecksetzen();
     }, 3000);
 }
 
-function reset() {
-    flippedCard = false;
-    guessedCard = false;
-    firstCard = null;
-    secondCard = null;
+function zuruecksetzen() {
+    gewendeteKarte = false;
+    gerateneKarte = false;
+    ersteKarte = null;
+    zweiteKarte = null;
 }
 
 highscore = 0;
-highscoreContainer = document.getElementById("highscore");
+highscoreFeld = document.getElementById("highscore");
 
-function highscoreUp() {
+function highscoreHoch() {
     highscore += 1000;
-    highscoreContainer.innerHTML = highscore;
+    highscoreFeld.innerHTML = highscore;
 }
 
-function highscoreDown() {
+function highscoreRunter() {
     if (highscore >= 500) {
         highscore = highscore - 500;
-        highscoreContainer.innerHTML = highscore;
+        highscoreFeld.innerHTML = highscore;
     }
 }
 
-function restart() {
-    highscoreContainer.innerHTML = 0;
+function neustarten() {
+    highscoreFeld.innerHTML = 0;
     highscore = 0;
-    message.style.display = "none";
-    foundCardsArray = [];
-    reset();
-    cardsArray.forEach((card) => {
-        card.classList.remove("flipped");
-        card.removeEventListener("click", flipCard);
+    endNachricht.style.display = "none";
+    gefundeneKartenArray = [];
+    zuruecksetzen();
+    kartenArray.forEach((karte) => {
+        karte.classList.remove("gewendet");
+        karte.removeEventListener("click", karteWenden);
     });
-    setTimeout(() => { start() }, 1000);
+    setTimeout(() => { starten() }, 1000);
 }
 
-let message = document.getElementById("end");
-let endingHighscore = document.getElementById("endinghighscore");
+let endNachricht = document.getElementById("ende");
+let endhighscore = document.getElementById("endhighscore");
 
-function endingMessage() {
-    endingHighscore.innerHTML = highscore;
-    message.style.display = "block";
+function endBenachrichtigung() {
+    endhighscore.innerHTML = highscore;
+    endNachricht.style.display = "block";
 }
 
-function start() {
-    shuffleCards();
-    cards.forEach((card) => card.addEventListener("click", flipCard));
-    highscoreContainer.innerHTML = 0;
+function starten() {
+    kartenMischen();
+    karten.forEach((karte) => karte.addEventListener("click", karteWenden));
+    highscoreFeld.innerHTML = 0;
 }
 
-start();
+starten();
 
-// Final version in English
+// Dies ist die endgültige Version
+// Diese Version wird bei der Präsentation genutzt
